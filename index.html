@@ -37,25 +37,6 @@
             document.getElementById("txtDate").value=DateStr;
             document.getElementById("txtDate").min=DateStr;
         }
-        function VerifyDate(){
-            var num = ["01","02","03","04","05","06","07","08","09"]
-            var nowYear = new Date().getFullYear()
-            var nowMonth = new Date().getMonth()
-            var nowDate = new Date().getDate();
-            if(nowMonth<10){
-                var nowMonthStr = num[nowMonth];
-            }else{
-                var nowMonthStr = nowMonth+""
-            }
-            if(nowDate<10){
-                var nowDateStr = num[nowDate];
-            }else{
-                var nowDateStr = nowDate+"";
-            }
-            var nowYearStr = nowYear+"";
-            var DateStr = nowYearStr+"-"+nowMonthStr+"-"+nowDateStr
-            
-        }
         function VerifyName(){
             var VerifyName=/[a-zA-Z ]{2,100}/
             var Name = document.getElementById("txtName").value;
