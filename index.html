@@ -37,8 +37,27 @@
             document.getElementById("txtDate").value=DateStr;
             document.getElementById("txtDate").min=DateStr;
         }
+        function VerifyDate(){
+            var num = ["01","02","03","04","05","06","07","08","09"]
+            var nowYear = new Date().getFullYear()
+            var nowMonth = new Date().getMonth()
+            var nowDate = new Date().getDate();
+            if(nowMonth<10){
+                var nowMonthStr = num[nowMonth];
+            }else{
+                var nowMonthStr = nowMonth+""
+            }
+            if(nowDate<10){
+                var nowDateStr = num[nowDate];
+            }else{
+                var nowDateStr = nowDate+"";
+            }
+            var nowYearStr = nowYear+"";
+            var DateStr = nowYearStr+"-"+nowMonthStr+"-"+nowDateStr
+            
+        }
         function VerifyName(){
-            var VerifyName=/[a-zA-Z]{2,100}/
+            var VerifyName=/[a-zA-Z ]{2,100}/
             var Name = document.getElementById("txtName").value;
             if(Name.match(VerifyName)!=Name){
                 document.getElementById("msgName").innerHTML="Please Enter Valid Name."
@@ -59,7 +78,11 @@
         }
         function VerifyDays(){
             var Days = document.getElementById("txtDays").value;
-            if(Days<1 || Days>30){
+            if(Days.indexOf(".")!=-1 ||Days.indexOf("e")!=-1){
+                alert("Only Numbers Are Allowed")
+                document.getElementById("txtDays").value="1"
+            }
+            else if(Days<1 || Days>30){
                 if(Days<1){
                     alert("Days must be 1-30.")
                     document.getElementById("txtDays").value="1"
@@ -71,7 +94,12 @@
         }
         function VerifyPerson(){
             var Person = document.getElementById("txtPerson").value;
-            if(Person<1 || Person>5){
+            var VerifyNum = /[0-9]*/
+            if(Person.indexOf(".")!=-1 || Person.indexOf("e")!=-1){
+                alert("Only Numbers Are Allowed")
+                document.getElementById("txtPerson").value="1"
+            }
+            else if(Person<1 || Person>5){
                 if(Person<1){
                     alert("Person must be 1-5.")
                     document.getElementById("txtPerson").value="1"
@@ -126,8 +154,11 @@
         }
         function VerifyAdvance(){
             var Advance = document.getElementById("txtAdvance").value;
-            if (Advance<500 || Advance>GrossTotel){
-                if(Advance<500){
+            if(Advance.indexOf(".")!=-1 || Advance.indexOf("e")!=-1){
+                alert("Only Numbers Are Allowed.")
+                document.getElementById("txtAdvance").value = GrossTotel;
+            }
+               else if(Advance<500){
                 alert("Minimum Advance Amount is 500.")
                 document.getElementById("txtAdvance").value = 500;   
                 }
@@ -135,7 +166,6 @@
                     alert("Advance Amount is must be less then Totel Amount")
                     document.getElementById("txtAdvance").value = GrossTotel;  
                 }
-            }
         }
         
         function bookClick(){
@@ -366,7 +396,7 @@
             <div class="col-lg-9 mt-4 border-start border-1">
                 <dl class="row">
                     <dt class="col-lg-3">Advance Amount</dt>
-                    <dd class="col-lg-9"><input type="number" onfocus="bodyload()" onblur="VerifyAdvance()"  min="500" class="form-control" id="txtAdvance"><span id="msgAdvance"></span></dd> 
+                    <dd class="col-lg-9"><input type="number" onfocus="bodyload()" onkeyup="VerifyAdvanceNum()" onblur="VerifyAdvance()"  min="500" class="form-control" id="txtAdvance"><span id="msgAdvance"></span></dd> 
                 </dl>
             </div>
         </div>
