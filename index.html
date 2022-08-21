@@ -15,6 +15,10 @@
         h5{
             font-size: 1rem;
         }
+        .msg{
+            color: grey;
+            font-size: .8rem;
+        }
     </style>
     <script>
         function VerifyDate(){
@@ -90,8 +94,6 @@
                     alert("Persons must be 1-5.")
                     document.getElementById("txtPerson").value="5"   
                 }
-            }else{
-                document.getElementById("msgPerson").innerHTML=""
             }
         }
         var GrossTotel = 0;
@@ -284,11 +286,11 @@
                     <dt class="col-lg-4">Customer Mobile Number</dt>
                     <dd class="col-lg-8"><input type="text" onkeyup="VerifyMobile()" minlength="10" maxlength="10" class="form-control" id="txtMobile"><span id="msgMobile"></span></dd>
                     <dt class="col-lg-4">Check-in Date</dt>
-                    <dd class="col-lg-8"><input type="date" onkeydown="return false" class="input-medium search-query form-control" id="txtDate"><span id="msgDate"></span></dd>
+                    <dd class="col-lg-8"><input type="date" onkeydown="return false" class="input-medium search-query form-control" id="txtDate"><span id="msgDate" class="msg">Note: You can select only for the next 1 year</span></dd>
                     <dt class="col-lg-4">Totel Number of Days</dt>
-                    <dd class="col-lg-8"><input type="number" onblur="VerifyDays()" min="1" max="30" value="1" class="form-control" id="txtDays"><span id="msgDays"></span></dd>
-                    <dt class="col-lg-4">Totel Number of Person</dt>
-                    <dd class="col-lg-8"><input type="number" onblur="VerifyPerson()" min="1" max="5" value="1" class="form-control" id="txtPerson"><span id="msgPerson"></span></dd>
+                    <dd class="col-lg-8"><input type="number" onblur="VerifyDays()" min="1" max="30" value="1" class="form-control" id="txtDays"><span id="msgDays" class="msg">Note: You can select only 1-30 Days.</span></dd>
+                    <dt class="col-lg-4">Totel Number of Person's</dt>
+                    <dd class="col-lg-8"><input type="number" onblur="VerifyPerson()" min="1" max="5" value="1" class="form-control" id="txtPerson"><span id="msgPerson" class="msg">Note: You can select only 1-5 Persons.</span></dd>
                 </dl>
             </div>
         </div>
@@ -380,7 +382,7 @@
             <div class="col-lg-9 mt-4 border-start border-1">
                 <dl class="row">
                     <dt class="col-lg-3">Advance Amount</dt>
-                    <dd class="col-lg-9"><input type="number" onfocus="bodyload()" onkeyup="VerifyAdvanceNum()" onblur="VerifyAdvance()"  min="500" class="form-control" id="txtAdvance"><span id="msgAdvance"></span></dd> 
+                    <dd class="col-lg-9"><input type="number" onfocus="bodyload()" onkeyup="VerifyAdvanceNum()" onblur="VerifyAdvance()"  min="500" class="form-control" id="txtAdvance"><span id="msgAdvance" class="msg">Note: You can pay minimum Rs.500 Advance.</span></dd> 
                 </dl>
             </div>
         </div>
