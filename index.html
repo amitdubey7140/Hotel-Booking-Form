@@ -134,7 +134,6 @@
             }else{
                 GrossTotel = RoomCost*Days;
             }
-            document.getElementById("txtAdvance").value = GrossTotel;
             document.getElementById("txtAdvance").max = GrossTotel;
         }
         function VerifyAdvance(){
@@ -154,6 +153,7 @@
         }
         
         function bookClick(){
+            bodyload()
             var Name = document.getElementById("txtName").value;
             var VerifyName=/[a-zA-Z ]{2,100}/
             var Mobile = document.getElementById("txtMobile").value;
@@ -169,6 +169,7 @@
             if(optDelux.checked){
                 RoomType = "Delux";
                 RoomCost = 2500;
+    
             }
             if(optSuite.checked){
                 RoomType="Suite";
@@ -214,7 +215,7 @@
                 alert("Please Enter Valid Totel Number of Person.")
             }else if(Advance<=0){
                 alert("Advance Amount can't be less then 0.")
-            }else{
+            } else{
                 document.getElementById("lblName").innerHTML=Name.trim().toUpperCase();
                 document.getElementById("lblMobile").innerHTML="+91 "+Mobile;
                 var displayDate = Date.split("-")
@@ -223,7 +224,6 @@
                 document.getElementById("lblPerson").innerHTML = Person;
                 document.getElementById("lblRoom").innerHTML = RoomType;
                 document.getElementById("lblAmenities").innerHTML = Amenitie;
-                var GrossTotel = 0;
                 if(Person>2){
                     var ExtraPerson = Person-2;
                     var ExtraCost = 1000 * ExtraPerson;
@@ -261,7 +261,7 @@
         }
     </script>
 </head>
-<body onload="VerifyDate()">
+<body onload="VerifyDate()" onchange="bodyload()">
     <header class="bg-dark d-flex justify-content-between align-items-center">
         <div class="p-2">
             <img src="./public/images/Hotel_Logo2.png" alt="" width="200vh">
@@ -382,7 +382,7 @@
             <div class="col-lg-9 mt-4 border-start border-1">
                 <dl class="row">
                     <dt class="col-lg-3">Advance Amount</dt>
-                    <dd class="col-lg-9"><input type="number" onfocus="bodyload()" onkeyup="VerifyAdvanceNum()" onblur="VerifyAdvance()"  min="500" class="form-control" id="txtAdvance"><span id="msgAdvance" class="msg">Note: You can pay minimum Rs.500 Advance.</span></dd> 
+                    <dd class="col-lg-9"><input type="number" onfocus="bodyload()" onkeyup="VerifyAdvanceNum()" onblur="VerifyAdvance()" min="500" class="form-control" id="txtAdvance"><span id="msgAdvance" class="msg">Note: You can pay minimum Rs.500 Advance.</span></dd> 
                 </dl>
             </div>
         </div>
@@ -415,13 +415,13 @@
                                 <dd id="lblRoom" class="col-lg-5 m-2"></dd>
                                 <dt class="col-lg-6 m-2">Amenities</dt>
                                 <dd id="lblAmenities" class="col-lg-5 m-2"></dd>
-                                <dt class="col-lg-6 m-2">Gross Totel</dt>
+                                <dt class="col-lg-6 m-2">Totel Amount</dt>
                                 <dd id="lblGross" class="col-lg-5 m-2"></dd>
                                 <dt class="col-lg-6 m-2">Advance Amount</dt>
                                 <dd id="lblAdvance" class="col-lg-5 m-2"></dd>
                             </dl>
                             <div class="row p-2">
-                                <dt class="col-lg-6">Totel</dt>
+                                <dt class="col-lg-6">You have to pay</dt>
                                 <dd class="col-lg-5" id="lblTotel"></dd>
                             </div>
                         </div>
